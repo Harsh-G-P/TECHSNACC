@@ -3,7 +3,8 @@ import cors from "cors";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import "dotenv/config";
-//models
+
+// Models
 import './modles/categoryModel.js';
 import './modles/brandModel.js';
 import './modles/productModel.js';
@@ -30,13 +31,22 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 const URI = process.env.MongoDBURI;
 
+// ✅ Connect to MongoDB first, then start server
 mongoose.connect(URI, {
-  ssl: true,
-  tlsAllowInvalidCertificates: false,
-}).then(() => {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => {
   console.log("✅ Connected to MongoDB Atlas");
-}).catch((err) => {
-  console.error("❌ Failed to connect to MongoDB", err);
+
+  // ✅ Start Server ONLY after DB is connected
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on port ${PORT}`);
+  });
+})
+.catch((err) => {
+  console.error("❌ Failed to connect to MongoDB:", err.message);
+  process.exit(1);
 });
 
 const allowedOrigins = [
@@ -50,7 +60,6 @@ app.use(cors({
   origin: allowedOrigins,
   credentials: true,
 }));
-
 
 // ✅ Middleware
 app.use(express.json());
@@ -73,8 +82,3 @@ app.use('/api/order', orderRouter);
 app.use('/api/review', reviewRouter);
 app.use('/api/profile', profileRouter);
 app.use('/api/backup', backupRouter);
-
-// ✅ Start Server
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-});
