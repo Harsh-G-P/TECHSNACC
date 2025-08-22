@@ -58,12 +58,6 @@ const Login = () => {
       return;
     }
 
-    if (!captchaValue) {
-      toast.error("Please complete the reCAPTCHA.");
-      setLoading(false);
-      return;
-    }
-
     try {
       const response = await axios.post(`${backendUrl}/api/auth/login`, { email, password });
 
