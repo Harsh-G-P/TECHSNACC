@@ -42,9 +42,8 @@ mongoose.connect(URI, {
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:5174',
-  'https://techsnacc.vercel.app',
-  'https://techsnacc-admin.vercel.app',
-  'https://techsnacc.onrender.com',
+  'https://techsnacc-client.vercel.app',
+  'https://techsnacc-admin-five.vercel.app',
 ];
 
 app.use(cors({
