@@ -11,7 +11,7 @@ const ShopContextProvider = (props) => {
   const [search, setSearch] = useState('');
   const [showSearch, setShowSearch] = useState(false);
 
-  const backendUrl = import.meta.env.VITE_BACKEND_URI;
+  const backendUrl = "https://techsnacc-server.vercel.app"
   const [token, setToken] = useState('');
   const [isLoggedin, setIsLoggedin] = useState(false);
   const [userData, setUserData] = useState(null);
