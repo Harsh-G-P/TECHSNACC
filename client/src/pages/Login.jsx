@@ -3,7 +3,6 @@ import { assets } from '../assets/assets';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { ShopContext } from '../context/ShopContext';
-import ReCAPTCHA from 'react-google-recaptcha';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import { GoogleLogin } from '@react-oauth/google';
@@ -132,10 +131,6 @@ const Login = () => {
               />
             </label>
 
-            <ReCAPTCHA
-              sitekey="6LeqdYUrAAAAAJnldJrzjkAR__EXQv9odCTG6OV8"
-              onChange={(value) => setCaptchaValue(value)}
-            />
 
             <div className="flex items-center justify-between text-sm text-gray-500">
               <span onClick={() => navigate('/reset-password')} className="cursor-pointer hover:text-blue-600">
