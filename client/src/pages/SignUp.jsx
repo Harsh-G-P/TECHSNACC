@@ -3,7 +3,6 @@ import { assets } from '../assets/assets';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { ShopContext } from '../context/ShopContext';
-import ReCAPTCHA from 'react-google-recaptcha';
 import axios from 'axios';
 
 const SignUp = () => {
@@ -15,7 +14,7 @@ const SignUp = () => {
     password: '',
     confirmPassword: ''
   });
-  const [captchaValue, setCaptchaValue] = useState(null);
+
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -54,11 +53,6 @@ const SignUp = () => {
       return;
     }
 
-    if (!captchaValue) {
-      toast.error("Please complete the reCAPTCHA");
-      setLoading(false);
-      return;
-    }
 
     try {
       const res = await axios.post(`${backendUrl}/api/auth/register`, {
@@ -136,11 +130,6 @@ const SignUp = () => {
               </div>
             ))}
 
-            <ReCAPTCHA
-              sitekey="6LcDBe8qAAAAAHiq8sQObi-6Qd2Gkq58H1GhODKO"
-              onChange={(val) => setCaptchaValue(val)}
-            />
-
             <div className="flex items-center justify-between">
               <p className="text-sm text-gray-500">
                 Already have an account?
@@ -163,3 +152,4 @@ const SignUp = () => {
 };
 
 export default SignUp;
+
