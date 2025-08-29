@@ -60,7 +60,6 @@ const SignUp = () => {
         username,
         email,
         password,
-        captcha: captchaValue
       });
 
       if (res.data.success) {
@@ -152,4 +151,5 @@ const SignUp = () => {
 };
 
 export default SignUp;
+
 
