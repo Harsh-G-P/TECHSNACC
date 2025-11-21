@@ -66,7 +66,7 @@ const placeOrderStripe =async (req,res)=>{
     try {
         
         const {userId,items,amount,address} = req.body
-        const { origin } = process.env.FRONTEND_URL
+        const { origin } = req.headers
 
         const orderData = {
             userId,
@@ -405,6 +405,7 @@ const getProductsOrderedCount = async (req, res) => {
 
 
 export {verifyStripe, getSalesData, placeOrder, placeOrderStripe, allOrders, userOrders,updateStatus, getPaymentData,downloadInvoice,getProductsOrderedCount}
+
 
 
 
