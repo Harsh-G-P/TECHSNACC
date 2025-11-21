@@ -104,12 +104,13 @@ const placeOrderStripe =async (req,res)=>{
         })
 
 const session = await stripe.checkout.sessions.create({
-    payment_method_types: ["card", "upi"],  // ← REQUIRED FOR INR
+    payment_method_types: ["card"],   // ✔ ONLY CARD IS ALLOWED
     success_url: `${origin}/verify?success=true&orderId=${newOrder._id}`,
     cancel_url: `${origin}/verify?success=false&orderId=${newOrder._id}`,
     line_items,
     mode: "payment",
 });
+
 
 
         res.json({success:true,session_url:session.url})
@@ -407,3 +408,4 @@ const getProductsOrderedCount = async (req, res) => {
 
 
 export {verifyStripe, getSalesData, placeOrder, placeOrderStripe, allOrders, userOrders,updateStatus, getPaymentData,downloadInvoice,getProductsOrderedCount}
+
